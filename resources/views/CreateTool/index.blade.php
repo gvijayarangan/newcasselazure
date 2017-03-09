@@ -1,6 +1,7 @@
-@include('layouts.app')
-@extends('CreateTool')
+@extends('layouts.app')
+
 @section('content')
+
 
     <link href="{!! asset('css/all.css') !!}" media="all" rel="stylesheet" type="text/css" />
     <div class="container">
@@ -62,4 +63,5 @@
                 </div>
             </div>
         </div>
+    </div>
 @endsection
