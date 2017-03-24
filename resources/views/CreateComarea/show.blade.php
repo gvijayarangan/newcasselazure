@@ -1,5 +1,4 @@
-@include('layouts.app')
-@extends('CreateComarea')
+@extends('layouts.app')
 @section('content')
     <link href="{!! asset('css/all.css') !!}" media="all" rel="stylesheet" type="text/css" />
     <div class="container">
@@ -14,16 +13,16 @@
             <tr class="bg-info">
 
             <tr>
+                <td>Center Name</td>
+                <td><?php echo ($post['cntr_id']); ?></td>
+            </tr>
+            <tr>
                 <td>Common Area/System Name*</td>
                 <td><?php echo ($post['ca_name']); ?></td>
             </tr>
             <tr>
                 <td>Comments </td>
                 <td><?php echo ($post['ca_comments']); ?></td>
-            </tr>
-            <tr>
-                <td>Center Name</td>
-                <td><?php echo ($post['cntr_id']); ?></td>
             </tr>
             </tbody>
         </table>

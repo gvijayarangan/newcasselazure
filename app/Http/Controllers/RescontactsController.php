@@ -23,6 +23,25 @@ class RescontactsController extends Controller
         return view('CreateRescon.index',compact('createrescons'));
     }
 
+    public function search(Request $request)
+    {
+
+        $query = trim($request->get('q'));
+        #dd(!$query);
+        $createrescons = $query
+            //? \App\Apartment::where('apt_number', 'LIKE', "%$query%")->get()
+            ? DB::table('rescontacts')
+                ->where('con_fname', '=', $query)->get()
+            : \App\Rescontact::all();
+        foreach ($createrescons as $rescons) {
+
+            $rescons->con_res_id = Resident::findOrFail($rescons->con_res_id)->res_fname . " " .
+                Resident::findOrFail($rescons->con_res_id)->res_lname;
+        }
+        return view('CreateRescon.index',compact('createrescons'));
+
+    }
+
     public function show($id)
     {
         $post = Rescontact::find($id);
@@ -50,8 +69,8 @@ class RescontactsController extends Controller
             'con_fname' => 'required|string|Max:50',
             'con_lname' => 'required|string|Max:50',
             'con_relationship' => 'required|string|Max:50',
-            'con_cellphone' => 'required|string|digits:10',
-            'con_email' => 'required|email|max:255',
+            'con_cellphone' => 'string|digits:10',
+            'con_email' => 'email|max:255',
             'con_gender' => 'required|string',
         ]);
         $rescontact = new Rescontact();
@@ -97,8 +116,8 @@ class RescontactsController extends Controller
             'con_fname' => 'required|string|Max:50',
             'con_lname' => 'required|string|Max:50',
             'con_relationship' => 'required|string|Max:50',
-            'con_cellphone' => 'required|string|digits:10',
-            'con_email' => 'required|email|max:255',
+            'con_cellphone' => 'string|digits:10',
+            'con_email' => 'email|max:255',
             'con_gender' => 'required|string',
         ]);
         $CreateRescon = Rescontact::find($id);

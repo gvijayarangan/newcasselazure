@@ -1,5 +1,4 @@
-@include('layouts.app')
-@extends('CreateComarea')
+@extends('layouts.app')
 @section('content')
     <link href="{!! asset('css/all.css') !!}" media="all" rel="stylesheet" type="text/css" />
     <div class="container">
@@ -19,7 +18,14 @@
                         @endif
                         {!! Form::open(['url' => 'commonarea']) !!}
                         <div class="form-group">
-                            {!! Form::label('ca_name', '*Common Area/System name:',['class' => 'col-md-4 control-label']) !!}
+                            <span style="color: red; display:block; float:left">*</span>
+                            {!! Form::label('cntr_id', 'Center Name:',['class' => 'col-md-4 control-label']) !!}
+                            <div class="col-md-4">
+                                {{ Form::select('cntr_id', array_merge([0 => 'Please Select']) + $centers, 'default', array('id' => 'center_dropdown')) }}
+                            </div>
+                            </br> </br>
+                            <span style="color: red; display:block; float:left">*</span>
+                            {!! Form::label('ca_name', 'Common Area/System name:',['class' => 'col-md-4 control-label']) !!}
                             <div class="col-md-4">
                                 {!! Form::text('ca_name',null,['class'=>'col-md-4 form-control','required' => 'required']) !!}
                             </div>
@@ -29,16 +35,11 @@
 
 
                             <div class="form-group">
-                                {!! Form::label('cntr_id', 'Center Name:',['class' => 'col-md-4 control-label']) !!}
-                                <div class="col-md-4">
-                                    {{ Form::select('cntr_id', array_merge([0 => 'Please Select']) + $centers, 'default', array('id' => 'center_dropdown')) }}
-                                </div>
-                                </br> </br>
 
                                 <div class="form-group">
                                     {!! Form::label('ca_comments', 'Comments:',['class' => 'col-md-4 control-label']) !!}
                                     <div class="col-md-4">
-                                        {!! Form::textarea('ca_comments',null,['class' => 'col-md-4 form-control','required' => 'required','rows' => 4, 'cols' => 60]) !!}
+                                        {!! Form::textarea('ca_comments',null,['class' => 'col-md-4 form-control','rows' => 4, 'cols' => 60]) !!}
                                     </div>
                                 </div>
                                     </br> </br>
